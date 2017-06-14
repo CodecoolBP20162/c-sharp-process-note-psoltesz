@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -15,7 +14,7 @@ namespace ProcessNote
         private Process currentProcess = Process.GetCurrentProcess();
         private double memUsage;
         // initializing comment class
-        List<Comment> comments = new List<Comment>();
+        Comment comments = new Comment(0, "list");
 
         public ProcessNotePanel()
         {
@@ -170,7 +169,7 @@ namespace ProcessNote
         private void SaveButton_MouseClick(object sender, MouseEventArgs e)
         {
             Comment comment = new Comment(currentProcess.Id, textBox1.Text);
-            comments.Add(comment);
+            comments.comments.Add(comment);
             CommentContentLabel.Text = textBox1.Text;
             CommentContentLabel.Visible = true;
             MessageBox.Show("Comment saved successfully.");
@@ -180,11 +179,11 @@ namespace ProcessNote
 
         private string GetCommentContent(int ID)
         {
-            foreach (Comment comment in comments)
+            foreach (Comment comment in comments.comments)
             {
-                if (comment.getID() == ID)
+                if (comment.ID == ID)
                 {
-                    return comment.getContent();
+                    return comment.Content;
                 }
             }
             return "";

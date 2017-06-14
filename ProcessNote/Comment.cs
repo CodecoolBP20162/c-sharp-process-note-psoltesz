@@ -4,8 +4,9 @@ namespace ProcessNote
 {
     class Comment
     {
-        int ID;
-        string content;
+        private int id;
+        private string content;
+        public List<Comment> comments = new List<Comment>();
 
         public Comment(int ID, string content)
         {
@@ -13,10 +14,16 @@ namespace ProcessNote
             this.content = content;
         }
 
-        public int getID()
-        { return ID; }
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
-        public string getContent()
-        { return content; }
+        public string Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
     }
 }
